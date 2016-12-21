@@ -9,9 +9,7 @@
 		<relativePath>../smile-parent</relativePath>
 	</parent>
 	<artifactId>smile-dependencies</artifactId>
-	<properties>
 
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
