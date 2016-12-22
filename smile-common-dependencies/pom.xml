@@ -9,6 +9,7 @@
 	</parent>
 
 	<artifactId>smile-common-dependencies</artifactId>
+	<description>常用Jar包依赖</description>
 
 	<dependencies>
 		<!-- <optional>true</optional>作用：当project-A 依赖project-B, project-B 依赖project-D时 
