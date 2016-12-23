@@ -42,14 +42,19 @@
 			<!-- ####################模块包################ -->
 			<dependency>
 				<groupId>com.smileframework</groupId>
+				<artifactId>smile-dependencies</artifactId>
+				<version>${smileframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smileframework</groupId>
 				<artifactId>smile-common-dependencies</artifactId>
 				<version>${smileframework.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.smileframework</groupId>
-				<artifactId>smile-dependencies</artifactId>
+				<artifactId>smile-maplestory-dependencies</artifactId>
 				<version>${smileframework.version}</version>
-			</dependency>
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 
