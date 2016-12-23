@@ -11,12 +11,49 @@
 	<artifactId>smile-game-maplestory</artifactId>
 	<packaging>pom</packaging>
 
+
+	<properties>
+		<lombok.version>1.16.4</lombok.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.smileframework</groupId>
 			<artifactId>smile-maplestory-dependencies</artifactId>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.smileframework</groupId>
+				<artifactId>smile-game-maplestory-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smileframework</groupId>
+				<artifactId>smile-game-maplestory-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smileframework</groupId>
+				<artifactId>smile-game-maplestory-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smileframework</groupId>
+				<artifactId>smile-game-maplestory-dao</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.smileframework</groupId>
+				<artifactId>smile-game-maplestory-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+
+
+	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -28,11 +65,10 @@
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
 							<mainClass>
-								com.smile.game.App</mainClass>
+								com.smile.game.maplestory.api.BootStrap</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -40,4 +76,11 @@
 		</plugins>
 	</build>
 
+	<modules>
+		<module>smile-game-maplestory-api</module>
+		<module>smile-game-maplestory-common</module>
+		<module>smile-game-maplestory-model</module>
+		<module>smile-game-maplestory-service</module>
+		<module>smile-game-maplestory-dao</module>
+	</modules>
 </project>
