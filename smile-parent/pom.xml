@@ -18,6 +18,8 @@
 		<smileframework.version>1.0.0-SNAPSHOT</smileframework.version>
 		<com.alibaba.fastjson.version>1.2.17</com.alibaba.fastjson.version>
 		<com.alibaba.druid.version>1.0.18</com.alibaba.druid.version>
+		<protostuff.version>1.0.12</protostuff.version>
+		<objenesis.version>2.4</objenesis.version>
 		<!-- Overriding a version -->
 		<java.version>1.8</java.version>
 		<!-- <spring.version>4.3.2.RELEASE</spring.version> -->
@@ -38,7 +40,25 @@
 				<artifactId>druid</artifactId>
 				<version>${com.alibaba.druid.version}</version>
 			</dependency>
-
+			<!-- protostuff -->
+			<dependency>
+			    <groupId>com.dyuproject.protostuff</groupId>
+			    <artifactId>protostuff-core</artifactId>
+			    <version>${protostuff.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.dyuproject.protostuff</groupId>
+			    <artifactId>protostuff-runtime</artifactId>
+			    <version>${protostuff.version}</version>
+			</dependency>
+			<!-- objenesis -->
+			<!-- https://mvnrepository.com/artifact/org.objenesis/objenesis -->
+			<dependency>
+			    <groupId>org.objenesis</groupId>
+			    <artifactId>objenesis</artifactId>
+			    <version>${objenesis.version}</version>
+			</dependency>
+						
 			<!-- ####################模块包################ -->
 			<dependency>
 				<groupId>com.smileframework</groupId>
