@@ -80,21 +80,30 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			<!-- 
+			surefire 插件用来在maven构建生命周期的test phase执行一个应用的单元测试。它会产生两种不同形式的测试结果报告：
+				1）.纯文本
+				2）.xml文件格式的
+				默认情况下，这些文件生成在工程的${basedir}/target/surefire-reports，目录下（basedir指的是pom文件所在的目录）。 
+				它可以运行任何testNG,Junit,pojo写的单元测试 
+			-->
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
 				</configuration>
-			</plugin>
+			</plugin> -->
+			<!-- maven-resources-plugin则用来处理资源文件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<configuration>
-					<includeEmptyDirs>true</includeEmptyDirs>
 					<encoding>utf-8</encoding>
+					<includeEmptyDirs>true</includeEmptyDirs>
 				</configuration>
 			</plugin>
+			<!-- 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -106,8 +115,9 @@
 						</manifest>
 					</archive>
 				</configuration>
-			</plugin>
-			<plugin>
+			</plugin> 
+			-->
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 			</plugin>
@@ -125,8 +135,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-			</plugin>
-
+			</plugin> -->
+			<!-- 生成sources源码包的插件 --> 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
