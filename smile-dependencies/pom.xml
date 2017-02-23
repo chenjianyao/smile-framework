@@ -19,8 +19,11 @@
 		<java.version>1.8</java.version>
 		<!-- Overriding a version -->
 		<smileframework.version>1.0.0-SNAPSHOT</smileframework.version>
-		<com.alibaba.fastjson.version>1.2.17</com.alibaba.fastjson.version>
-		<com.alibaba.druid.version>1.0.18</com.alibaba.druid.version>
+		<fastjson.version>1.2.17</fastjson.version>
+		<druid.version>1.0.18</druid.version>
+		<msgpack.version>0.6.12</msgpack.version>
+		<protobuf.version>3.2.0</protobuf.version>
+		<cglib-nodep.version>3.2.4</cglib-nodep.version>
 		<protostuff.version>1.0.12</protostuff.version>
 		<objenesis.version>2.4</objenesis.version>
 		<mina.version>2.0.16</mina.version>
@@ -34,16 +37,31 @@
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
-				<version>${com.alibaba.fastjson.version}</version>
+				<version>${fastjson.version}</version>
 			</dependency>
-
 			<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
-				<version>${com.alibaba.druid.version}</version>
+				<version>${druid.version}</version>
 			</dependency>
-
+			<!--- serialize -->
+			<!-- msgpack 二进制序列化，号称比protocal buffer快四倍，比json快10倍 -->
+	        <dependency>
+	            <groupId>org.msgpack</groupId>
+	            <artifactId>msgpack</artifactId>
+	            <version>${msgpack.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>com.google.protobuf</groupId>
+	            <artifactId>protobuf-java</artifactId>
+	            <version>${protobuf.version}</version>
+	        </dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>${cglib-nodep.version}</version>
+			</dependency>
 			<!-- protostuff -->
 			<dependency>
 				<groupId>com.dyuproject.protostuff</groupId>
@@ -55,7 +73,6 @@
 				<artifactId>protostuff-runtime</artifactId>
 				<version>${protostuff.version}</version>
 			</dependency>
-
 			<!-- objenesis -->
 			<!-- https://mvnrepository.com/artifact/org.objenesis/objenesis -->
 			<dependency>
@@ -118,6 +135,7 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<showWarnings>true</showWarnings>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
