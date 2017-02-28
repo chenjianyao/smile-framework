@@ -2,10 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<!-- 方式②： 将Platform作为parent  继承plugin-->
 	<parent>
 		<groupId>io.spring.platform</groupId>
 		<artifactId>platform-bom</artifactId>
-		<version>2.0.8.RELEASE</version>
+		<version>Brussels-RELEASE</version>
 		<relativePath />
 	</parent>
 
@@ -30,6 +31,21 @@
 		<commons-dbutils.version>1.6</commons-dbutils.version>
 	</properties>
 
+	<!-- 方式 ① import Platform的pom 到你的应用的pom中。-->
+	<!-- 
+	<dependencyManagement>
+	    <dependencies>
+	        <dependency>
+	            <groupId>io.spring.platform</groupId>
+	            <artifactId>platform-bom</artifactId>
+	            <version>Brussels-RELEASE</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	    </dependencies>
+	</dependencyManagement>
+	-->
+	 
 	<dependencyManagement>
 		<dependencies>
 			<!-- ####################第三方常用包################ -->

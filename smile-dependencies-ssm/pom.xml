@@ -21,10 +21,10 @@
 			<groupId>com.smileframework</groupId>
 			<artifactId>smile-dependencies-common</artifactId>
 		</dependency>
-		<!-- test继承添加test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<!-- 特殊 -->
 		<dependency>

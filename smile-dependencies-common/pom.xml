@@ -11,9 +11,6 @@
 	<description>常用Jar包依赖</description>
 
 	<dependencies>
-		<!-- <optional>true</optional>作用：当project-A 依赖project-B, project-B 依赖project-D时 
-			所以当project-B的<optional>true</optional>时, project-A中如果没有显式的引入project-D, 则project-A不依赖project-D, 
-			即project-A可以自己选择是否依赖project-D,默认<optional>的值为false, 及子项目必须依赖 -->
 		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -115,7 +112,7 @@
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz-jobs</artifactId>
-            <version>2.2.3</version>
+			<version>${quartz.version}</version>
         </dependency>
 		<!-- LOG 引入boot的日志-->
 		<dependency>
@@ -124,7 +121,7 @@
 		</dependency>
        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-redis</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
             <exclusions>
             	<exclusion>
             		<groupId>org.springframework.boot</groupId>
@@ -132,10 +129,12 @@
             	</exclusion>
             </exclusions>
        </dependency>
-		<!-- test -->
+		<!-- 可选 optional为true 子项目需要显示依赖,否则不继承 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 
