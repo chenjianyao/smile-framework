@@ -21,10 +21,12 @@
 			<groupId>com.smileframework</groupId>
 			<artifactId>smile-dependencies-common</artifactId>
 		</dependency>
+		<!-- 可选 optional为true 子项目需要显示依赖,否则不继承 -->		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<optional>true</optional>
 		</dependency>
 		<!-- 特殊 -->
 		<dependency>
