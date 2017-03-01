@@ -8,7 +8,6 @@
     
     <property name="USER_HOME" value="logs" />
     <property scope="context" name="FILE_NAME" value="log" />
-    <property scope="context" name="FILE_SIZE" value="100MB" />
     <timestamp key="byDateTime" datePattern="yyyy-MM-dd" />
     <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
 	
@@ -38,13 +37,12 @@
 		 TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责触发滚动。
 		 FixedWindowRollingPolicy： 根据固定窗口算法重命名文件的滚动策略。
 		**************************************************************************-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily hours -->
             <fileNamePattern>logs/${byDateTime}/${FILE_NAME}-info-%d{yyyy-MM-dd-HH}-%i.log.zip </fileNamePattern>
             <maxHistory>30</maxHistory>  
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${FILE_SIZE}</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
         	<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger - %msg%n</pattern>
@@ -70,13 +68,12 @@
         <append>true</append>
         <prudent>false</prudent>
         <file>logs/${FILE_NAME}-debug.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily hours -->
             <fileNamePattern>logs/${byDateTime}/${FILE_NAME}-debug-%d{yyyy-MM-dd-HH}-%i.log.zip </fileNamePattern>
             <maxHistory>30</maxHistory>  
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${FILE_SIZE}</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger - %msg%n</pattern>
@@ -103,13 +100,12 @@
         <append>true</append>
         <prudent>false</prudent>
         <file>logs/${FILE_NAME}-warn.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily hours -->
             <fileNamePattern>logs/${byDateTime}/${FILE_NAME}-warn-%d{yyyy-MM-dd-HH}-%i.log.zip </fileNamePattern>
             <maxHistory>30</maxHistory>  
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${FILE_SIZE}</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
           <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger - %msg%n</pattern>
@@ -135,12 +131,11 @@
         <append>true</append>
         <prudent>false</prudent>
         <file>logs/${FILE_NAME}-error.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>logs/${byDateTime}/${FILE_NAME}-error-%d{yyyy-MM-dd-HH}-%i.log.zip </fileNamePattern>
             <maxHistory>30</maxHistory>  
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>${FILE_SIZE}</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger - %msg%n</pattern>
