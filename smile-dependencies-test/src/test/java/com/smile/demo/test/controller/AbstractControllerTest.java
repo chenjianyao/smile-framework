@@ -34,50 +34,40 @@ import org.springframework.web.context.WebApplicationContext;
  * @author chenjian
  * @since 2017年1月5日 上午10:53:24
  */
-
-
-@RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！ 
+@RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
 @WebAppConfiguration // 由于是Web项目，Junit需要模拟ServletContext，因此我们需要给我们的测试类加上@WebAppConfiguration。
-//@SpringApplicationConfiguration(classes = Application.class) // 指定我们SpringBoot工程的Application启动类
-@ContextConfiguration({
-	"file:src/main/webapp/WEB-INF/dispatcher-servlet.xml",
-	"classpath*: spring/**.xml"
-})
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/dispatcher-servlet.xml", "classpath*: spring/**.xml" })
 public class AbstractControllerTest {
 	@Autowired
 	protected WebApplicationContext wac;
 	protected MockMvc mockMvc;
 	protected RestTemplate restTemplate;
-	
-    @Before
-    public void setUp() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-        //this.restTemplate = new TestRestTemplate();
-        this.restTemplate = new RestTemplate();
-    }
 
-    public MvcResult mockMVCPostJson(String apiUrl,String jsonString) throws Exception {
-       return this.mockMvc
-                .perform(MockMvcRequestBuilders.post(apiUrl).content(jsonString))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.status").value("0"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
-                .andReturn();
-                
-                //测试跳转页面
-                //andExpect(MockMvcResultMatchers.view().name("/index")).andReturn();
-    }
-    
-    public MvcResult mockMVCPost(String apiUrl,MultiValueMap<String, String> params) throws Exception {
-       return this.mockMvc
-                .perform(MockMvcRequestBuilders.post(apiUrl).params(params))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.status").value("0"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
-                .andReturn();
-    }
+	@Before
+	public void setUp() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+		// this.restTemplate = new TestRestTemplate();
+		this.restTemplate = new RestTemplate();
+	}
+
+	public MvcResult mockMVCPostJson(String apiUrl, String jsonString) throws Exception {
+		return this.mockMvc.perform(MockMvcRequestBuilders.post(apiUrl).content(jsonString))
+				.andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				// .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("0"))
+				// .andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
+				.andReturn();
+
+		// 测试跳转页面
+		// andExpect(MockMvcResultMatchers.view().name("/index")).andReturn();
+	}
+
+	public MvcResult mockMVCPost(String apiUrl, MultiValueMap<String, String> params) throws Exception {
+		return this.mockMvc.perform(MockMvcRequestBuilders.post(apiUrl).params(params))
+				.andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				// .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("0"))
+				// .andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
+				.andReturn();
+	}
 }
