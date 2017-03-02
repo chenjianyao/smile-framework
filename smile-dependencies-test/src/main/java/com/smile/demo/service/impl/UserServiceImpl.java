@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(User user) {
 		Errors errors = new BeanPropertyBindingResult(user, user.getClass().getName());
-		//ValidationUtils.invokeValidator(customUserValidation, user, errors);
+		ValidationUtils.invokeValidator(customUserValidation, user, errors);
 		
 		LOGGER.info("UserServiceImpl.getUser 执行开始");
 		

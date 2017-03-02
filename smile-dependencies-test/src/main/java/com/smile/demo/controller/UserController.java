@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,5 +33,13 @@ public class UserController {
 		user.setId(new Double(Math.random() * 1000).longValue());
 		user.setName("zhang" + new Double(Math.random() * 1000).longValue());
 		return userService.getUser(user);
+	}
+
+	@RequestMapping("/test/{name}")
+	public String testsave(@Valid User user, BindingResult result) {
+		if (result.hasErrors()) {
+			return "error";
+		}
+		return "success";
 	}
 }

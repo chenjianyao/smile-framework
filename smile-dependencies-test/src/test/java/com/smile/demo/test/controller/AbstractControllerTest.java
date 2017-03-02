@@ -36,7 +36,8 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
 @WebAppConfiguration // 由于是Web项目，Junit需要模拟ServletContext，因此我们需要给我们的测试类加上@WebAppConfiguration。
-@ContextConfiguration({ "file:src/main/webapp/WEB-INF/dispatcher-servlet.xml", "classpath*: spring/**.xml" })
+//@ContextConfiguration({ "file:src/main/webapp/WEB-INF/dispatcher-servlet.xml", "classpath*: spring/**.xml" })
+@ContextConfiguration({ "classpath:spring-application.xml", "classpath:spring-mvc.xml" })
 public class AbstractControllerTest {
 	@Autowired
 	protected WebApplicationContext wac;

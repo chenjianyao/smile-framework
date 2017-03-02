@@ -9,7 +9,11 @@
 	</parent>
 
 	<artifactId>smile-dependencies-test</artifactId>
-
+    <packaging>war</packaging>
+    <version>1.0.0</version>
+    <name>smile-dependencies-ssm-test</name>
+    <url>https://github.com/chenjianyao/</url>
+        
 	<dependencies>
 		<dependency>
 			<groupId>com.smileframework</groupId>
@@ -38,10 +42,6 @@
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.tomcat.embed</groupId>
-					<artifactId>tomcat-embed-el</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
