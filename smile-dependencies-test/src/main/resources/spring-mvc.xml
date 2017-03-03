@@ -20,23 +20,24 @@
 
     <!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
     <!-- 指定自己定义的validator -->
-	<mvc:annotation-driven validator="validator" conversion-service="conversionService">
+	<mvc:annotation-driven validator="validator" conversion-service="conversionService" content-negotiation-manager="contentNegotiationManager">
+		<!-- fastjson与SpringMVC整合 -->
 		<mvc:message-converters register-defaults="true">
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<constructor-arg name="defaultCharset" value="UTF-8"></constructor-arg>
 			</bean>
-			<bean id="fastJsonHttpMessageConverter"
-				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+			<bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
-						<value>text/plain;charset=UTF-8</value>
 						<value>application/json;charset=UTF-8</value>
+						<value>text/plain;charset=UTF-8</value><!-- 兼容IE6 IE6中会导致弹出对话框询问是否保存文件,而firefox等高级浏览器会正常打印json字符串 -->
 					</list>
 				</property>
-				<property name="features">
+				<property name="features"><!-- json序列化输出时的一些额外属性 -->
 					<array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
-						<value>WriteDateUseDateFormat</value>
-						<!-- <value>WriteMapNullValue</value> --><!-- 设置返回结果null字符串输出 -->
+						<value>QuoteFieldNames</value><!-- 输出key时是否使用双引号,默认为true -->
+						<value>WriteDateUseDateFormat</value><!-- 输出日期格式化 -->
+						<value>WriteMapNullValue</value><!-- 是否输出值为null的字段,默认为false -->
 					</array>
 				</property>
 			</bean>
@@ -84,13 +85,14 @@
     
 	<!-- 内容协商管理器 -->
 	<!--1、首先检查路径扩展名（如my.pdf）；2、其次检查Parameter（如my?format=pdf）；3、检查Accept Header -->
+	<!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
 		<property name="favorPathExtension" value="true" />
 		<!-- 用于开启 /userinfo/123?format=json 的支持 -->
 		<property name="favorParameter" value="true" />
 		<property name="parameterName" value="format" />
-		<!-- 是否忽略Accept Header -->
+		<!-- 是否忽略Accept Header ，默认就是false -->
 		<property name="ignoreAcceptHeader" value="false" />
 
 		<property name="mediaTypes"> <!--扩展名到MIME的映射；favorPathExtension, favorParameter是true时起作用 -->
@@ -108,13 +110,16 @@
 	<!-- 当在web.xml 中 DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源 -->
 	<mvc:default-servlet-handler />
 	<!-- 静态资源映射 -->
-	<!-- <mvc:resources mapping="/static/**" location="/WEB-INF/static/" /> -->
+	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
 
 
 	<!-- 对模型视图添加前后缀 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
+
+   <!-- 基于注解式子的异常处理 -->
+   <bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"></bean>
 
     <!-- 配置springMVC处理上传文件的信息 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

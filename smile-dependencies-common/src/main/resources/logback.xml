@@ -19,8 +19,8 @@
 	**************************************************************************-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!--  -->
-        <encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:%L - %msg%n</pattern>
+        <encoder charset="UTF-8" class="com.smileframework.common.logback.LogBackExEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%UUID] %-5level %logger{50}:%L - %msg%n</pattern>
         </encoder>
         <!-- 此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
