@@ -29,11 +29,11 @@ public class UUIDThreadConverter extends ClassicConverter {
 	 */
 	@Override
 	public String convert(ILoggingEvent event) {
-		if (MDC.get("SMILE") != null) {
-			return MDC.get("SMILE").toString();
+		if (MDC.get("MDC-SMILE") != null) {
+			return MDC.get("MDC-SMILE").toString();
 		} else {
-			MDC.put("SMILE", "T=" + UUID.randomUUID().toString().replace("-", ""));
-			return MDC.get("SMILE").toString();
+			MDC.put("MDC-SMILE", "T=" + UUID.randomUUID().toString().replace("-", ""));
+			return MDC.get("MDC-SMILE").toString();
 		}
 	}
 }
