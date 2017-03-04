@@ -1,4 +1,4 @@
-package com.smile.demo.common.date;
+package com.smileframework.common.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

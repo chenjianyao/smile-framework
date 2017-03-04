@@ -15,7 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.smile.demo.common.date.DateUtils;
+import com.smileframework.common.date.DateUtils;
 
 /**
  * 

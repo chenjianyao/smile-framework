@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- *****************************************作业类***************************************** -->
+	<!-- 步骤 1：Quartz Scheduler 配置作业 Quartz 来配置一个作业 -->
+	<!-- 推荐A 灵活 -->
+	<!-- A：使用 MethodInvokingJobDetailFactoryBean 这种方式在你想要调用特定 bean 的一个方法的时候很是方便，比另一种方法要简单的多。 -->
+	<bean id="simpleJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="group" value="job_work" />
+		<property name="name" value="job_work_name" />
+		<!--false表示等上一个任务执行完后再开启新的任务 ，如果是true，则不管是否执行完，时间到了都将开启 -->
+		<property name="concurrent" value="false" />
+		<property name="targetObject" ref="myBean" />
+		<property name="targetMethod" value="printMessage" />
+	</bean>
+
+
+	<!-- B：使用 JobDetailFactoryBean 如果你需要更高级的设置，需要给作业传递数据，想更加灵活的话就使用这种方式。 -->
+	<bean name="firstComplexJobDetail"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.smileframework.quartz.simple.FirstScheduledJob" />
+		<property name="jobDataMap">
+			<map>
+				<entry key="anotherBean" value-ref="anotherBean" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	<bean name="secondComplexJobDetail"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.smileframework.quartz.simple.SecondScheduledJob" />
+		<property name="durability" value="true" />
+	</bean>
+
+	<!-- *****************************************调度触发器***************************************** -->
+	<!-- 步骤 2：调度触发器 配置 Quartz 调度时要使用到的触发器 触发器用来定义调度器何时将会执行你的调度任务的那个时间 -->
+	<!-- A：简单触发器，使用 SimpleTriggerFactoryBean 你可以定义作业的启动时间、触发器之间的延迟时间以及 repeatInterval(频率)。 -->
+	<bean id="simpleTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="simpleJobDetail" />
+		<property name="startDelay" value="10000" />
+		<property name="repeatInterval" value="20000" />
+	</bean>
+
+	<!-- B：计划触发器，使用 CronTriggerFactoryBean 这种类型更加灵活，允许你针对特定实例选择计划方案以及将来要执行的频率。 -->
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="name" value="work_default_name" />
+		<property name="group" value="work_default" />
+		<property name="jobDetail" ref="firstComplexJobDetail" />
+		<property name="cronExpression" value="0/5 * * ? * *" />
+	</bean>
+	<!-- Always run at 20:00 everyday -->
+	<bean id="secondCronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="secondComplexJobDetail" />
+		<property name="cronExpression" value="0 0 20 ? * *" />
+	</bean>
+
+	<!-- *****************************************调度工厂***************************************** -->
+	<!-- 步骤3：调度工厂 配置创建定配置 Quartz 调度器的 SchedulerFactoryBean SchedulerFactoryBean 
+		将 jobDetails 和 triggers 整合在一起以配置 Quartz 调度器。 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="simpleJobDetail" />
+				<ref bean="firstComplexJobDetail" />
+				<ref bean="secondComplexJobDetail" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="simpleTrigger" />
+				<ref bean="cronTrigger" />
+				<ref bean="secondCronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+	
+<!--
+"0 0 12 * * ?"              每天中午12点触发
+"0 15 10 ? * *"             每天上午10:15触发
+"0 15 10 * * ?"             每天上午10:15触发
+"0 15 10 * * ? *"           每天上午10:15触发
+"0 15 10 * * ? 2005"        2005年的每天上午10:15触发
+"0 * 14 * * ?"              在每天下午2点到下午2:59期间的每1分钟触发
+"0 0/5 14 * * ?"            在每天下午2点到下午2:55期间的每5分钟触发
+"0 0/5 14,18 * * ?"         在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发
+"0 0-5 14 * * ?"            在每天下午2点到下午2:05期间的每1分钟触发
+"0 10,44 14 ? 3 WED"        每年三月的星期三的下午2:10和2:44触发
+"0 15 10 ? * MON-FRI"       周一至周五的上午10:15触发
+"0 15 10 15 * ?"            每月15日上午10:15触发
+"0 15 10 L * ?"             每月最后一日的上午10:15触发
+"0 15 10 ? * 6L"            每月的最后一个星期五上午10:15触发
+"0 15 10 ? * 6L 2002-2005"  2002年至2005年的每月的最后一个星期五上午10:15触发
+"0 15 10 ? * 6#3"           每月的第三个星期五上午10:15触发
+0 6 * * *                   每天早上6点
+0 */2 * * *                 每两个小时
+0 23-7/2，8 * * *            晚上11点到早上8点之间每两个小时，早上八点
+0 11 4 * 1-3                每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点
+0 4 1 1 *                   1月1日早上4点 
+-->
+</beans>
