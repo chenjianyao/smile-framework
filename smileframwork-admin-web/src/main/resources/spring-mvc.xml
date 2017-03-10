@@ -114,7 +114,7 @@
 		<property name="defaultContentType" value="text/html" />
 	</bean>
 
-	<mvc:view-controller path="/" view-name="forward:/index" />
+	<mvc:view-controller path="/" view-name="forward:index" />
 	<!-- 静态资源映射 -->
 	<!-- <mvc:resources location="/WEB-INF/static/**" mapping="/static/"/> -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />
