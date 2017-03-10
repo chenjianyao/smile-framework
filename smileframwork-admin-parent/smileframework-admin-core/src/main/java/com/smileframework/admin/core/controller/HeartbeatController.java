@@ -1,7 +1,6 @@
 package com.smileframework.admin.core.controller;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
-import com.smileframework.admin.core.dto.ResponseDto;
+import com.smileframework.admin.core.model.dto.ResponseDto;
+import com.smileframework.admin.core.model.dto.ResponseDtoBuilder;
 
 /**
  * 心跳服务 检测web服务是否正常的接口
@@ -31,6 +31,6 @@ public class HeartbeatController {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("time", new Date());
 		map.put("version", "1.0.0");
-		return ResponseDto.newSuccessResponseDto(map);
+		return ResponseDtoBuilder.success().setData(map).build();
 	}
 }

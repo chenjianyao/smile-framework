@@ -30,7 +30,9 @@
 		<commons-dbutils.version>1.6</commons-dbutils.version>
 		<!-- mybatis -->
 		<mybatis.version>3.3.0</mybatis.version>
-		<mybatis-spring.version>1.2.3</mybatis-spring.version>		
+		<mybatis-spring.version>1.2.3</mybatis-spring.version>
+		<pagehelper.version>4.1.6</pagehelper.version>
+		<shiro.version>1.3.2</shiro.version>
 	</properties>
 
 	<modules>
@@ -111,7 +113,38 @@
 				<artifactId>mybatis-spring</artifactId>
 				<version>${mybatis-spring.version}</version>
 			</dependency>
-					
+			<!-- mybatis分页插件 -->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper</artifactId>
+				<version>${pagehelper.version}</version>
+			</dependency>
+			<!-- shiro -->
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-ehcache</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-core</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-web</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-quartz</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
 			<!-- ####################模块包################ -->
 			<dependency>
 				<groupId>com.smileframework</groupId>
@@ -233,7 +266,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 			</plugin>
@@ -248,7 +281,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-			</plugin>
+			</plugin> -->
 		</plugins>
 
 		<pluginManagement>

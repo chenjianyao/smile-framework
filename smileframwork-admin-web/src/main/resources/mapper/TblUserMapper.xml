@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.admin.dao.TblUserMapper">
+    <resultMap id="resultMap" type="com.smile.admin.model.entity.TblUser">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime" />
+        <result column="deleted" jdbcType="INTEGER" property="deleted" />
+        <result column="update_date_time" jdbcType="TIMESTAMP" property="updateDateTime" />
+        <result column="version" jdbcType="INTEGER" property="version" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="open_account" jdbcType="VARCHAR" property="openAccount" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="qq" jdbcType="VARCHAR" property="qq" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="telphone" jdbcType="VARCHAR" property="telphone" />
+        <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+        <result column="isSuperAdmin" jdbcType="VARCHAR" property="issuperadmin" />
+    </resultMap>
+    <sql id="allColumnList">
+        id, create_date_time, deleted, update_date_time, version, avatar, birthday, email, 
+        login_name, mobile, name, open_account, password, qq, sex, telphone, wechat, isSuperAdmin
+    </sql>
+	<select id="select" parameterType="map" resultMap="resultMap">
+		select
+		<include refid="allColumnList" />
+		from tbl_user
+	</select>
+    
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="resultMap">
+        select 
+        <include refid="allColumnList" />
+        from tbl_user
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from tbl_user
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.smile.admin.model.entity.TblUser">
+        insert into tbl_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createDateTime != null">
+                create_date_time,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="updateDateTime != null">
+                update_date_time,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="loginName != null">
+                login_name,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="openAccount != null">
+                open_account,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="qq != null">
+                qq,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="telphone != null">
+                telphone,
+            </if>
+            <if test="wechat != null">
+                wechat,
+            </if>
+            <if test="issuperadmin != null">
+                isSuperAdmin,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="createDateTime != null">
+                #{createDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="updateDateTime != null">
+                #{updateDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=INTEGER},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="openAccount != null">
+                #{openAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="telphone != null">
+                #{telphone,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null">
+                #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="issuperadmin != null">
+                #{issuperadmin,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.smile.admin.model.entity.TblUser">
+        update tbl_user
+        <set>
+            <if test="createDateTime != null">
+                create_date_time = #{createDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="updateDateTime != null">
+                update_date_time = #{updateDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=INTEGER},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                login_name = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="openAccount != null">
+                open_account = #{openAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                qq = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="telphone != null">
+                telphone = #{telphone,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null">
+                wechat = #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="issuperadmin != null">
+                isSuperAdmin = #{issuperadmin,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>
