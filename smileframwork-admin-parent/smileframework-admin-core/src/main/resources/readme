@@ -1,0 +1,49 @@
+说明文档-------------------------
+
+1、继承显示增加:
+<properties>
+	<java.version>1.8</java.version>
+</properties>
+
+<dependency>
+	<groupId>javax.servlet.jsp</groupId>
+	<artifactId>javax.servlet.jsp-api</artifactId>
+	<scope>provided</scope>
+</dependency>
+<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>javax.servlet-api</artifactId>
+	<scope>provided</scope>
+</dependency>
+<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>jstl</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-test</artifactId>
+	<scope>test</scope>
+	<exclusions>
+		<exclusion>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>
+				spring-boot-test-autoconfigure
+			</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+<dependency>
+    <groupId>org.freemarker</groupId>
+    <artifactId>freemarker</artifactId>
+</dependency>
+
+2、jar包目录接口说明:
+example -> 示例文件
+static  -> 静态文件
+
+
+	
