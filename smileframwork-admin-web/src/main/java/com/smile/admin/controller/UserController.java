@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.smile.admin.service.UserService;
 import com.smileframework.admin.core.model.dto.ResponseDto;
 import com.smileframework.admin.core.model.dto.ResponseDtoBuilder;
+import com.smileframework.admin.core.sequence.SequenceIdGenerateUtils;
 
 /**
  * 
@@ -47,6 +48,8 @@ public class UserController {
 	@ResponseBody
 	public ResponseDto<Object> getAllUser() {
 		Map map = new HashMap();
-		return ResponseDtoBuilder.success().setData(userService.select(map)).build();
+		map.put("sequence", SequenceIdGenerateUtils.generate("C"));
+		return ResponseDtoBuilder.success().setData(map).build();
 	}
+
 }

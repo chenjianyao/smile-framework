@@ -9,7 +9,7 @@
  *      http://www.mobanker.com/
  *
  */
-package com.smile.admin.controller;
+package com.smileframework.admin.core.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
