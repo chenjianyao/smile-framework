@@ -17,6 +17,16 @@
 		<property name="configLocation" value="classpath:configs/quartz.properties" />
 	</bean>
 	
+    <!-- quartz持久化存储  -->
+    <!--quartz配置，支持负载均衡，线程池-->
+	<bean name="quartzScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+		<property name="overwriteExistingJobs" value="true" />
+		<property name="configLocation" value="classpath:configs/quartz-database.properties" />
+	</bean>	 
 <!--
 "0 0 12 * * ?"              每天中午12点触发
 "0 15 10 ? * *"             每天上午10:15触发

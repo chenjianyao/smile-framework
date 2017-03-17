@@ -6,7 +6,6 @@ import java.util.Date;
  * tbl_user 
  * 
  * @author chenjian
- * @since 2017Äê03ÔÂ10ÈÕ 19:53:57
  */
 public class TblUser {
     private String id;

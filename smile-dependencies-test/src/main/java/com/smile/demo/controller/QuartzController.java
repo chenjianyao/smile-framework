@@ -2,6 +2,7 @@ package com.smile.demo.controller;
 
 import javax.annotation.Resource;
 
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.smileframework.quartz.dynamic.http.HttpQuartzManager;
 @RestController
 @RequestMapping("/quartz")
 public class QuartzController {
+	
 	private final ModelMap MODELMAP = new ModelMap().addAttribute("status", "1").addAttribute("code", "00000000")
 			.addAttribute("msg", "操作成功!");
 
