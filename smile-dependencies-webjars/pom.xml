@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.smileframework</groupId>
+	<artifactId>smile-dependencies-webjars</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>smile-dependencies-webjars</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<destDir>${project.build.outputDirectory}/META-INF/resources/</destDir>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+	</properties>
+
+	<scm>
+		<url>https://github.com/almasaeed2010/AdminLTE</url>
+		<connection>https://github.com/almasaeed2010/AdminLTE.git</connection>
+		<developerConnection>https://github.com/almasaeed2010/AdminLTE.git</developerConnection>
+		<tag>v2.3.11</tag>
+	</scm>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<targetPath>${destDir}</targetPath>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>  
