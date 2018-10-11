@@ -69,8 +69,8 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <!-- <bean class="com.mobanker.framework.convert.String2DateConverter"/>
-                <bean class="com.mobanker.framework.convert.Date2StringConverter"/> -->
+                <!-- <bean class="com.xx.framework.convert.String2DateConverter"/>
+                <bean class="com.xx.framework.convert.Date2StringConverter"/> -->
             </set>
         </property>
     </bean>

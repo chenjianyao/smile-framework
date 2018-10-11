@@ -1,14 +1,3 @@
-/*
- * Copyright by mobanker and the original author or authors.
- * 
- * This document only allow internal use ,Any of your behaviors using the file
- * not internal will pay legal responsibility.
- *
- * You may learn more information about mobanker from
- *
- *      http://www.mobanker.com/
- *
- */
 package com.smileframework.quartz.simple;
 
 import org.quartz.JobExecutionContext;

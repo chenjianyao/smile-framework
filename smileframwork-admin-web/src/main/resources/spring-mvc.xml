@@ -18,8 +18,7 @@
 	</context:component-scan>
 
 	<!-- ****************************** 2.扫描web层注解类 ****************************** -->
-	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 
-		两个bean,是spring MVC为@Controllers分发请求所必须的 -->
+	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter两个bean,是spring MVC为@Controllers分发请求所必须的 -->
 	<!-- 指定自己定义的validator -->
 	<mvc:annotation-driven validator="validator"
 		content-negotiation-manager="contentNegotiationManager">
@@ -75,8 +74,8 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
-				<bean class="com.mobanker.framework.convert.String2DateConverter"/> 
-				<bean class="com.mobanker.framework.convert.Date2StringConverter"/>
+				<bean class="com.xx.framework.convert.String2DateConverter"/> 
+				<bean class="com.xx.framework.convert.Date2StringConverter"/>
 			</set>
 		</property>
 	</bean> -->
